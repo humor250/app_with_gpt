@@ -11,10 +11,10 @@ function loader(element) {
 
     loadInterval = setInterval(() => {
         // Update the text content of the loading indicator
-        element.textContent += '.';
+        element.textContent += '^';
 
-        // If the loading indicator has reached three dots, reset it
-        if (element.textContent === '....') {
+        // If the loading indicator has reached 4 dots, reset it
+        if (element.textContent === '^^^^') {
             element.textContent = '';
         }
     }, 300);
@@ -86,7 +86,7 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
-    const response = await fetch('http://localhost:5000', {
+    const response = await fetch('https://server-gpt.onrender.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ const handleSubmit = async (e) => {
     } else {
         const err = await response.text()
 
-        messageDiv.innerHTML = "Something went wrong"
+        messageDiv.innerHTML = "Wrong from client"
         alert(err)
     }
 }
